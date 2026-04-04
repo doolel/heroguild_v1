@@ -5,37 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HEROGUILD | 0033-PULS GLOBAL</title>
     <style>
-        body { background: #050505; color: #e0e0e0; font-family: 'Courier New', Courier, monospace; margin: 0; padding: 20px; transition: opacity 1s; }
-        .dashboard { max-width: 900px; margin: auto; border: 1px solid #222; padding: 20px; position: relative; }
+        body { background: #050505; color: #e0e0e0; font-family: 'Courier New', Courier, monospace; margin: 0; padding: 20px; transition: opacity 1.5s; overflow-x: hidden; }
+        .dashboard { max-width: 900px; margin: auto; border: 1px solid #1a1a1a; padding: 20px; position: relative; }
         .header { display: flex; justify-content: space-between; border-bottom: 2px solid #35m; padding-bottom: 10px; margin-bottom: 20px; }
-        .capital { color: #32cd32; font-size: 1.8em; font-weight: bold; text-shadow: 0 0 10px rgba(50, 205, 50, 0.3); }
+        .capital { color: #32cd32; font-size: 1.8em; font-weight: bold; text-shadow: 0 0 10px rgba(50, 205, 50, 0.4); }
         .xp-container { width: 100%; background: #111; border: 1px solid #333; height: 10px; margin: 15px 0; overflow: hidden; }
-        #xp-bar { width: 0%; height: 100%; background: #35m; transition: width 0.5s; }
+        #xp-bar { width: 0%; height: 100%; background: #35m; transition: width 0.5s ease; }
         .log-container { background: #000; border: 1px solid #1a1a1a; height: 350px; overflow-y: scroll; padding: 15px; font-size: 0.85em; display: flex; flex-direction: column-reverse; }
         .log-entry { margin-bottom: 8px; padding-left: 10px; border-left: 1px solid #333; animation: slideIn 0.2s ease-out; }
         .loot-epic { color: #35m; font-weight: bold; }
-        .lvl-up { color: #ff00ff; font-weight: bold; border: 1px solid #ff00ff; padding: 5px; display: inline-block; margin: 10px 0; }
+        .lvl-up { color: #ff00ff; font-weight: bold; border: 1px solid #ff00ff; padding: 5px; display: inline-block; margin: 10px 0; animation: blink 1s infinite; }
         
         /* Stealth Mode Overlay */
         #stealth-overlay { 
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: black; color: #111; justify-content: center; align-items: center; 
-            z-index: 1000; font-size: 0.7em; letter-spacing: 2px;
+            background: rgba(0,0,0,0.98); color: #0a0a0a; justify-content: center; align-items: center; 
+            z-index: 1000; font-size: 0.8em; letter-spacing: 5px; pointer-events: none;
         }
 
         .wallet-box { border: 1px solid #35m; padding: 15px; background: #0a0a0a; margin-top: 25px; }
-        code { color: #fff; background: #1a1a1a; padding: 5px; border-radius: 3px; display: block; margin: 10px 0; word-break: break-all; border: 1px solid #333; }
+        code { color: #fff; background: #1a1a1a; padding: 8px; border-radius: 3px; display: block; margin: 10px 0; word-break: break-all; border: 1px solid #333; font-size: 1.1em; }
         
         @keyframes slideIn { from { transform: translateX(-10px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
     </style>
 </head>
 <body id="main-body">
 
-<div id="stealth-overlay">STEALTH_MODE_ACTIVE // SIGNAL_ENCRYPTED</div>
+<div id="stealth-overlay">SYSTEM_ENCRYPTED // STEALTH_ACTIVE</div>
 
-<div class="dashboard">
+<div class="dashboard" id="content">
     <div class="header">
-        <div style="letter-spacing: 3px;">HEROGUILD_V1 // RPG-LOOTER</div>
+        <div style="letter-spacing: 3px; font-weight: bold;">HEROGUILD_V1 // RPG-LOOTER</div>
         <div id="guild-lvl" style="color: #35m;">LVL: 1</div>
     </div>
 
@@ -47,47 +48,46 @@
         <div id="xp-bar"></div>
     </div>
 
-    <div style="display: flex; justify-content: space-between; font-size: 0.8em; margin-bottom: 15px; color: #888;">
-        <div>MODE: <span id="current-mode" style="color: #35m;">ACTIVE_PULS</span></div>
-        <div>STABILIZATION: <span style="color: #32cd32;">98.2%</span></div>
+    <div style="display: flex; justify-content: space-between; font-size: 0.8em; margin-bottom: 15px; color: #666;">
+        <div>NODE_STATE: <span id="current-mode" style="color: #35m;">ACTIVE_PULS</span></div>
+        <div>LIQUIDITY: <span style="color: #32cd32;">OPTIMIZED</span></div>
     </div>
 
     <div class="log-container" id="event-log">
-        <div class="log-entry">[SYSTEM] Initializing 0033-PULS Engine...</div>
+        <div class="log-entry">[SYSTEM] 0033-PULS Engine Initialized. Monitoring RUNE/BTC...</div>
     </div>
 
     <div class="wallet-box">
         <h4 style="color: #f7931a; margin: 0 0 10px 0;">OFFICIAL BTC NODE (MAINNET)</h4>
         <code id="btc-address">194AYf6ZbKJrhcfz66Nsb8pK1yrS3Lj7ii</code>
         
-        <div style="margin-top: 15px; font-size: 0.85em; text-align: left; border-top: 1px solid #222; padding-top: 10px; color: #bbb;">
+        <div style="margin-top: 15px; font-size: 0.85em; text-align: left; border-top: 1px solid #222; padding-top: 10px; color: #999;">
             <p><strong style="color: #35m;">VERIFICATION PROTOCOL (f-metoden):</strong></p>
-            <p>För att erhålla ett officiellt TXID-certifikat eller kvitto på din donation, vänligen skicka ett mail till vår admin-nod med ämnesraden nedan.</p>
-            <p style="background: #111; padding: 5px; color: #35m; border-left: 2px solid #35m;">
+            <p>För TXID-certifikat eller kvitto på donation: maila admin-noden med följande ämne:</p>
+            <p style="background: #111; padding: 10px; color: #35m; border-left: 3px solid #35m; font-family: monospace;">
                 SUBJECT: TXID_VERIFY_[DIN_BTC_ADRESS]
             </p>
-            <p style="font-size: 0.8em; font-style: italic;">Obs: Alla inkommande medel loggas som "Institutional Liquidity" i realtid.</p>
+            <p style="font-size: 0.8em; font-style: italic; color: #555;">Institutional Liquidity Logging: ENABLED</p>
         </div>
     </div>
 </div>
 
 <script>
-    let capital = 216189.50; // Basreserve
+    let capital = 216189.50; 
     let exp = 0;
     let lvl = 1;
-    let isStealth = false;
+    let stealthTimer = 0;
 
     const logElement = document.getElementById('event-log');
     const events = [
-        { msg: "RUNE/BTC Inscription successful", type: "loot-epic", gain: 112 },
-        { msg: "Passive Liquidity Drain (2.9% Opt)", type: "normal", gain: 28 },
-        { msg: "Institutional Support Node active", type: "loot-epic", gain: 450 },
-        { msg: "Mewtwo Psychic Surge: $BTC stabilized", type: "normal", gain: 65 },
-        { msg: "Block-Reward: Heroguild Validation", type: "loot-epic", gain: 195 }
+        { msg: "RUNE/BTC Support Inscription", type: "loot-epic", gain: 145 },
+        { msg: "Passive Yield (f-metoden 2.9%)", type: "normal", gain: 32 },
+        { msg: "Institutional Flow Absorbed", type: "loot-epic", gain: 512 },
+        { msg: "Mewtwo Psychic Surge: Volatility Banked", type: "normal", gain: 88 },
+        { msg: "Block-Validation Reward", type: "loot-epic", gain: 210 }
     ];
 
     function addLog(message, type) {
-        if(isStealth) return;
         const now = new Date().toLocaleTimeString();
         const div = document.createElement('div');
         div.className = 'log-entry ' + (type || '');
@@ -95,42 +95,43 @@
         logElement.prepend(div);
     }
 
-    // RPG Motor
-    function pulse() {
-        if(isStealth) return;
-
+    function runEngine() {
         const event = events[Math.floor(Math.random() * events.length)];
-        const gain = event.gain + (Math.random() * 50);
+        const gain = event.gain + (Math.random() * 40);
         
         capital += gain;
-        exp += (gain * 1.2);
+        exp += (gain * 1.5);
 
         document.getElementById('banked-amount').innerText = `$${capital.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
         
-        let xpWidth = (exp / 1500) * 100;
-        document.getElementById('xp-bar').style.width = xpWidth + '%';
+        let xpWidth = (exp / 2000) * 100;
+        document.getElementById('xp-bar').style.width = Math.min(xpWidth, 100) + '%';
 
         addLog(`${event.msg} (+ $${gain.toFixed(2)})`, event.type);
 
-        if (exp >= 1500) {
+        if (exp >= 2000) {
             lvl++;
             exp = 0;
             document.getElementById('guild-lvl').innerText = `LVL: ${lvl}`;
-            addLog(`>>> LEVEL UP: GUILD REACHED STAGE ${lvl} <<<`, 'lvl-up');
+            addLog(`>>> LEVEL UP: GUILD ATTAINED RANK ${lvl} <<<`, 'lvl-up');
+        }
+
+        // Stealth Logic Counter
+        stealthTimer += 5;
+        if (stealthTimer >= 60) {
+            activateStealth();
         }
     }
 
-    // Stealth/Sleep Logic: Aktiveras efter 60 sekunder
-    setTimeout(() => {
-        isStealth = true;
+    function activateStealth() {
         document.getElementById('stealth-overlay').style.display = 'flex';
-        document.getElementById('main-body').style.opacity = '0.1';
-        console.log("[SYSTEM] Stealth Mode Active. Engine running in background.");
+        document.getElementById('main-body').style.opacity = '0.05';
         document.getElementById('current-mode').innerText = "STEALTH_SLEEP";
         document.getElementById('current-mode').style.color = "#ff4500";
-    }, 60000); 
+        console.log("[SECURITY] Stealth protocol engaged.");
+    }
 
-    setInterval(pulse, 5000); // 5s puls-intervall
+    setInterval(runEngine, 5000); 
 </script>
 
 </body>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>HEROGUILD | NETWORK STATUS</title>
+    <style>
+        body { background: #050505; color: #32cd32; font-family: monospace; padding: 20px; }
+        .node-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; border: 1px solid #222; padding: 20px; }
+        .status-up { color: #35m; font-weight: bold; }
+        .pulse-box { border-left: 3px solid #35m; padding-left: 15px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h2>GLOBAL_NODE_MONITOR // 0033-PULS</h2>
+    <div class="node-grid">
+        <div class="pulse-box">
+            <p>MAIN_RESERVE: <span style="color: #fff;">$216,189.50</span></p>
+            <p>AMMO_CAPACITY: <span style="color: #ff4500;">84.1%</span></p>
+        </div>
+        <div class="pulse-box">
+            <p>RUNE/BTC_PULS: <span class="status-up">STABLE (0.00000560)</span></p>
+            <p>STEALTH_PROTOCOL: <span style="color: #35m;">ACTIVE</span></p>
+        </div>
+    </div>
+    <hr style="border: 0; border-top: 1px dashed #333; margin: 20px 0;">
+    <a href="index.html" style="color: #888;">[ BACK_TO_TERMINAL ]</a>
+</body>
+</html>

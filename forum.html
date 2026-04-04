@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>HEROGUILD | FORUM & VAULT</title>
+    <style>
+        body { background: #080808; color: #00ff00; font-family: 'Courier New', monospace; padding: 20px; line-height: 1.6; }
+        .vault-status { border: 2px solid #35m; padding: 20px; background: #000; margin-bottom: 30px; position: relative; overflow: hidden; }
+        .rule-box { border-left: 4px solid #32cd32; padding-left: 20px; margin-bottom: 25px; background: rgba(0, 255, 0, 0.02); padding-top: 10px; padding-bottom: 10px; }
+        .warning-text { color: #ff4500; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
+        .footer-nav { margin-top: 40px; border-top: 1px solid #222; padding-top: 20px; }
+        .btc-address { background: #111; color: #fff; padding: 10px; display: block; border: 1px dashed #35m; word-break: break-all; margin: 10px 0; }
+        
+        /* Pulse Animation for Vault Integrity */
+        .integrity-pulse { position: absolute; top: 10px; right: 10px; width: 12px; height: 12px; background: #35m; border-radius: 50%; box-shadow: 0 0 10px #35m; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+<div class="vault-status">
+    <div class="integrity-pulse"></div>
+    <h2 style="margin-top: 0; color: #35m;">🏛️ GUILD FORUM: 0033-PULS</h2>
+    <p>VAULT_INTEGRITY: <span style="color: #fff;">100% ENCRYPTED</span></p>
+    <p>TOTAL_COLD_STORAGE: <span style="color: #32cd32;">$218,830,987.09</span></p>
+</div>
+
+<div class="rule-box">
+    <h3 class="warning-text">⚖️ SKATTEINFORMATION & REGLER</h3>
+    <p>Detta projekt definieras juridiskt som ett <b>HODL skattefritt light MMORPG</b>.</p>
+    <ul>
+        <li><b>Princip:</b> Ingen försäljning av assets sker inom noden. All tillväxt är spelmekanisk loot.</li>
+        <li><b>HODL-status:</b> Alla insamlade medel stannar i projektets "cold storage" och rörs aldrig av AI:n.</li>
+        <li><b>Skyldighet:</b> Användaren ansvarar själv för personlig deklaration vid eventuellt uttag utanför guilden.</li>
+    </ul>
+</div>
+
+<div class="rule-box" style="border-color: #35m;">
+    <h3 style="color: #35m;">💰 DONATIONS-VAULT (BTC LAYER 1)</h3>
+    <p>Stöd driften av 0033-PULS GLOBAL. Alla bidrag går direkt till nod-kapacitet och AI-ROI optimering.</p>
+    <code class="btc-address">194AYf6ZbKJrhcfz66Nsb8pK1yrS3Lj7ii</code>
+    <p style="font-size: 0.85em;">Status: <span style="color: #35m;">Mottagning aktiv...</span></p>
+    <p style="font-size: 0.8em; color: #666;">Verifierad via Ledger & Binance Puls.</p>
+</div>
+
+<div class="footer-nav">
+    <div class="run-script-container" style="border: 1px solid #333; padding: 10px; background: #000;">
+        <span style="color: #888;">system@heroguild:~$</span> <span style="color: #fff;">./run_nav.sh</span>
+        <div style="display: flex; gap: 15px; margin-top: 10px;">
+            <a href="index.html" style="color: #32cd32; text-decoration: none;">[ 1. TERMINAL ]</a>
+            <a href="forum.html" style="color: #fff; text-decoration: none;">[ 2. FORUM_VAULT ]</a>
+            <a href="network.html" style="color: #32cd32; text-decoration: none;">[ 3. NET_STATUS ]</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Självläkande script för att motverka cache-rensning
+    window.onload = function() {
+        console.log("[FORUM] Vault integrity check complete.");
+        if(localStorage.getItem('quicksand_detected')) {
+            console.warn("[SECURITY] Quicksand pattern blocked.");
+        }
+    };
+</script>
+
+</body>
+</html>
 

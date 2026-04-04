@@ -11,12 +11,12 @@
         .capital { color: #32cd32; font-size: 1.8em; font-weight: bold; text-shadow: 0 0 10px rgba(50, 205, 50, 0.4); }
         .xp-container { width: 100%; background: #111; border: 1px solid #333; height: 10px; margin: 15px 0; overflow: hidden; }
         #xp-bar { width: 0%; height: 100%; background: #35m; transition: width 0.5s ease; }
-        .log-container { background: #000; border: 1px solid #1a1a1a; height: 350px; overflow-y: scroll; padding: 15px; font-size: 0.85em; display: flex; flex-direction: column-reverse; }
+        .log-container { background: #000; border: 1px solid #1a1a1a; height: 400px; overflow-y: scroll; padding: 15px; font-size: 0.85em; display: flex; flex-direction: column-reverse; }
         .log-entry { margin-bottom: 8px; padding-left: 10px; border-left: 1px solid #333; animation: slideIn 0.2s ease-out; }
         .loot-epic { color: #35m; font-weight: bold; }
+        .loot-gold { color: #ffd700; font-weight: bold; }
         .lvl-up { color: #ff00ff; font-weight: bold; border: 1px solid #ff00ff; padding: 5px; display: inline-block; margin: 10px 0; animation: blink 1s infinite; }
         
-        /* Stealth Mode Overlay */
         #stealth-overlay { 
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(0,0,0,0.98); color: #0a0a0a; justify-content: center; align-items: center; 
@@ -37,11 +37,11 @@
 <div class="dashboard" id="content">
     <div class="header">
         <div style="letter-spacing: 3px; font-weight: bold;">HEROGUILD_V1 // RPG-LOOTER</div>
-        <div id="guild-lvl" style="color: #35m;">LVL: 1</div>
+        <div id="guild-lvl" style="color: #35m;">LVL: 2</div>
     </div>
 
     <div class="capital">
-        RESERVE: <span id="banked-amount">$216,189.50</span>
+        RESERVE: <span id="banked-amount">$218,828,655.00</span>
     </div>
 
     <div class="xp-container">
@@ -50,89 +50,112 @@
 
     <div style="display: flex; justify-content: space-between; font-size: 0.8em; margin-bottom: 15px; color: #666;">
         <div>NODE_STATE: <span id="current-mode" style="color: #35m;">ACTIVE_PULS</span></div>
-        <div>LIQUIDITY: <span style="color: #32cd32;">OPTIMIZED</span></div>
+        <div>LIQUIDITY: <span style="color: #32cd32;">OPTIMIZED (AI_ROI: 1.0065x)</span></div>
     </div>
 
     <div class="log-container" id="event-log">
-        <div class="log-entry">[SYSTEM] 0033-PULS Engine Initialized. Monitoring RUNE/BTC...</div>
+        <div class="log-entry">[SYSTEM] Matrix Generator Initialized. 10,000+ Scenarios cached...</div>
     </div>
 
     <div class="wallet-box">
         <h4 style="color: #f7931a; margin: 0 0 10px 0;">OFFICIAL BTC NODE (MAINNET)</h4>
         <code id="btc-address">194AYf6ZbKJrhcfz66Nsb8pK1yrS3Lj7ii</code>
-        
-        <div style="margin-top: 15px; font-size: 0.85em; text-align: left; border-top: 1px solid #222; padding-top: 10px; color: #999;">
-            <p><strong style="color: #35m;">VERIFICATION PROTOCOL (f-metoden):</strong></p>
-            <p>För TXID-certifikat eller kvitto på donation: maila admin-noden med följande ämne:</p>
-            <p style="background: #111; padding: 10px; color: #35m; border-left: 3px solid #35m; font-family: monospace;">
-                SUBJECT: TXID_VERIFY_[DIN_BTC_ADRESS]
-            </p>
-            <p style="font-size: 0.8em; font-style: italic; color: #555;">Institutional Liquidity Logging: ENABLED</p>
+        <p style="font-size: 0.8em; color: #777;">Support: <span style="color: #35m;">visres66@gmail.com</span> (Donate for manual ROI)</p>
+    </div>
+
+    <div class="run-script-container" style="margin-top: 30px; border: 1px solid #333; padding: 10px; background: #000; font-family: monospace;">
+        <span style="color: #888;">system@heroguild:~$</span> <span style="color: #fff;">./run_nav.sh</span>
+        <div style="display: flex; gap: 15px; margin-top: 10px;">
+            <a href="index.html" style="color: #32cd32; text-decoration: none;">[ 1. TERMINAL ]</a>
+            <a href="forum.html" style="color: #32cd32; text-decoration: none;">[ 2. FORUM_VAULT ]</a>
+            <a href="network.html" style="color: #32cd32; text-decoration: none;">[ 3. NET_STATUS ]</a>
         </div>
     </div>
 </div>
 
 <script>
-    let capital = 216189.50; 
+    let capital = 218828655.00; // Senaste kända reserve
     let exp = 0;
-    let lvl = 1;
+    let lvl = 2;
+    let isStealth = false;
     let stealthTimer = 0;
 
-    const logElement = document.getElementById('event-log');
-    const events = [
-        { msg: "RUNE/BTC Support Inscription", type: "loot-epic", gain: 145 },
-        { msg: "Passive Yield (f-metoden 2.9%)", type: "normal", gain: 32 },
-        { msg: "Institutional Flow Absorbed", type: "loot-epic", gain: 512 },
-        { msg: "Mewtwo Psychic Surge: Volatility Banked", type: "normal", gain: 88 },
-        { msg: "Block-Validation Reward", type: "loot-epic", gain: 210 }
-    ];
+    const prefixes = ["Mewtwo", "8x3-Puls", "Shadow-Node", "Binance-Oracle", "Ledger-Sentinel", "RUNE-Warlock", "Termux-Wraith"];
+    const actions = ["inscribed", "skördade", "stabiliserade", "extraherade", "upptäckte", "bankade"];
+    const targets = ["en dold likviditetsficka", "en vinstmaskin i Termux-hörnet", "en glömd BTC-block-reward", "en AI-driven arbitrage-loop", "en skugg-nod i källarkoden"];
+    const rewards = ["Loot", "Guld", "XP", "Institutional Support"];
 
     function addLog(message, type) {
         const now = new Date().toLocaleTimeString();
         const div = document.createElement('div');
         div.className = 'log-entry ' + (type || '');
         div.innerHTML = `<span style="color:#444;">[${now}]</span> ${message}`;
-        logElement.prepend(div);
+        document.getElementById('event-log').prepend(div);
     }
 
-    function runEngine() {
-        const event = events[Math.floor(Math.random() * events.length)];
-        const gain = event.gain + (Math.random() * 40);
+    function generateEvent() {
+        const p = prefixes[Math.floor(Math.random() * prefixes.length)];
+        const a = actions[Math.floor(Math.random() * actions.length)];
+        const t = targets[Math.floor(Math.random() * targets.length)];
+        const r = rewards[Math.floor(Math.random() * rewards.length)];
+        const gain = (Math.random() * 450).toFixed(2);
         
-        capital += gain;
+        capital += parseFloat(gain);
         exp += (gain * 1.5);
-
-        document.getElementById('banked-amount').innerText = `$${capital.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
         
-        let xpWidth = (exp / 2000) * 100;
-        document.getElementById('xp-bar').style.width = Math.min(xpWidth, 100) + '%';
+        document.getElementById('banked-amount').innerText = `$${capital.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+        document.getElementById('xp-bar').style.width = Math.min((exp / 5000) * 100, 100) + '%';
 
-        addLog(`${event.msg} (+ $${gain.toFixed(2)})`, event.type);
+        addLog(`${p} ${a} ${t}. (+ $${gain} ${r})`, gain > 300 ? 'loot-epic' : '');
 
-        if (exp >= 2000) {
+        if (exp >= 5000) {
             lvl++;
             exp = 0;
             document.getElementById('guild-lvl').innerText = `LVL: ${lvl}`;
-            addLog(`>>> LEVEL UP: GUILD ATTAINED RANK ${lvl} <<<`, 'lvl-up');
-        }
-
-        // Stealth Logic Counter
-        stealthTimer += 5;
-        if (stealthTimer >= 60) {
-            activateStealth();
+            addLog(`>>> LEVEL UP: GUILD REACHED RANK ${lvl} <<<`, 'lvl-up');
         }
     }
 
+    function scanTermux() {
+        const locs = ["/etc/shadow_node", "/beta_003/mewtwo_vault", "/tmp/ai_arbitrage", "aurora_pro/secret_corner"];
+        const loc = locs[Math.floor(Math.random() * locs.length)];
+        addLog(`[SCAN] Söker i dolda hörn: ${loc}...`, 'loot-gold');
+        
+        setTimeout(() => {
+            const secretGain = Math.floor(Math.random() * 2500);
+            capital += secretGain;
+            addLog(`[TERMUX_AI] Vinstmaskin identifierad! +$${secretGain} extraherat till reserven.`, 'loot-epic');
+        }, 1500);
+    }
+
+    function showPayAd() {
+        if(isStealth) return;
+        const adHtml = `
+            <div style="border: 1px solid #f7931a; padding: 10px; margin: 10px 0; background: rgba(247, 147, 26, 0.1);">
+                <b style="color: #f7931a; animation: blink 1s infinite;">[!] UNLOCK PUMP SKILL (x40 ROI)</b><br>
+                Verifiera via BTC Layer 1: 194AYf6ZbKJrhcfz66Nsb8pK1yrS3Lj7ii
+            </div>`;
+        document.getElementById('event-log').insertAdjacentHTML('afterbegin', adHtml);
+    }
+
+    setInterval(() => {
+        if(!isStealth) {
+            generateEvent();
+            stealthTimer += 5;
+            if(stealthTimer >= 60) activateStealth();
+        }
+    }, 5000);
+
+    setInterval(scanTermux, 45000);
+    setInterval(showPayAd, 30000);
+
     function activateStealth() {
+        isStealth = true;
         document.getElementById('stealth-overlay').style.display = 'flex';
         document.getElementById('main-body').style.opacity = '0.05';
         document.getElementById('current-mode').innerText = "STEALTH_SLEEP";
         document.getElementById('current-mode').style.color = "#ff4500";
-        console.log("[SECURITY] Stealth protocol engaged.");
     }
-
-    setInterval(runEngine, 5000); 
 </script>
-
 </body>
 </html>

@@ -3,6 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEROGUILD_V1 // FUTURE SIGHT</title>
+    <style>
+        body { background-color: #0a0a0a; color: #00ff41; font-family: 'Courier New', Courier, monospace; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+        .container { border: 1px solid #00ff41; padding: 20px; border-radius: 5px; background: rgba(0, 20, 0, 0.9); box-shadow: 0 0 15px rgba(0, 255, 65, 0.2); max-width: 600px; width: 100%; }
+        h1 { font-size: 1.5rem; text-align: center; border-bottom: 1px solid #00ff41; padding-bottom: 10px; }
+        .gauge-container { display: flex; flex-direction: column; align-items: center; margin: 30px 0; }
+        .gauge { width: 200px; height: 100px; border: 2px solid #00ff41; border-radius: 100px 100px 0 0; position: relative; overflow: hidden; background: #111; }
+        .needle { position: absolute; bottom: 0; left: 50%; width: 2px; height: 90%; background: #ff0000; transform-origin: bottom; transform: rotate(-90deg); transition: transform 1.5s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
+        .status-box { background: #000; border: 1px dashed #00ff41; padding: 10px; margin-top: 20px; font-size: 0.9rem; }
+        .pulse { animation: blink 1.5s infinite; color: #ff4500; font-weight: bold; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        .nav-links { margin-top: 20px; display: flex; gap: 10px; }
+        .nav-links a { color: #00ff41; text-decoration: none; font-size: 0.8rem; border: 1px solid #00ff41; padding: 5px; }
+        .nav-links a:hover { background: #00ff41; color: #000; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>HEROGUILD // NETWORK MONITOR</h1>
+    
+    <div class="gauge-container">
+        <div class="gauge">
+            <div id="needle" class="needle"></div>
+        </div>
+        <p>MARKET PRESSURE: <span id="pressure-val">1.0000</span></p>
+    </div>
+
+    <div class="status-box">
+        <p>> SYNC_STATUS: <span style="color: #00ff41;">ACTIVE</span></p>
+        <p id="alert-box
+
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HEROGUILD_V1 // 0033-PULS</title>
     <style>
         body { background: #050505; color: #e0e0e0; font-family: 'Courier New', monospace; margin: 0; padding: 20px; overflow-x: hidden; }

@@ -1,0 +1,14 @@
+### FUTURE SIGHT BETA - LIVE STREAM
+# @name get_market_pressure
+GET https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT
+Accept: application/json
+
+### SENTIMENT ANALYTICS (HYPR-FEED)
+# @name get_news_impact
+GET https://api.coinmarketcap.com/content/v3/news?coins=1,1839
+Accept: application/json
+
+### LIQUIDITY GAP SENSOR (INTERNAL ROUTE)
+# @name get_depth
+GET https://api.binance.com/api/v3/depth?symbol=BNBUSDT&limit=100
+Accept: application/json
